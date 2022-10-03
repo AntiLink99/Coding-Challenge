@@ -1,7 +1,5 @@
 package model;
 
-import java.math.BigDecimal;
-
 /**
  * @author jlued
  */
@@ -11,29 +9,31 @@ public class TaxItem {
 
     private int amount;
 
-    private BigDecimal price;
+    private double price;
 
     private boolean hasSalesTax;
 
     private boolean isImported;
 
-    private BigDecimal salesTax;
+    private double salesTax = 0;
 
-    private BigDecimal importTax;
+    private double importTax = 0;
 
     public TaxItem() {
 
     }
 
-    public TaxItem(String name, int amount, BigDecimal price, boolean hasSalesTax, boolean isImported) {
+    public TaxItem(String name, int amount, double price, boolean hasSalesTax, boolean isImported) {
         this.description = name;
         this.amount = amount;
         this.price = price;
         this.hasSalesTax = hasSalesTax;
         this.isImported = isImported;
+    }
 
-        this.salesTax = new BigDecimal(0);
-        this.importTax = new BigDecimal(0);
+    public String toString() {
+        String total = price + " " + importTax + " " + salesTax;
+        return amount + description + ": " + total;
     }
 
     public String getDescription() {
@@ -44,7 +44,7 @@ public class TaxItem {
         return amount;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -64,7 +64,7 @@ public class TaxItem {
         this.amount = amount;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -76,19 +76,19 @@ public class TaxItem {
         isImported = imported;
     }
 
-    public BigDecimal getSalesTax() {
+    public double getSalesTax() {
         return salesTax;
     }
 
-    public void setSalesTax(BigDecimal salesTax) {
+    public void setSalesTax(double salesTax) {
         this.salesTax = salesTax;
     }
 
-    public BigDecimal getImportTax() {
+    public double getImportTax() {
         return importTax;
     }
 
-    public void setImportTax(BigDecimal importTax) {
+    public void setImportTax(double importTax) {
         this.importTax = importTax;
     }
 }

@@ -2,7 +2,6 @@ package convert;
 
 import model.TaxItem;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +32,7 @@ public class TaxItemParser {
             int count = Integer.parseInt(matcher.group(1));
             newItem.setAmount(count);
 
-            BigDecimal price = new BigDecimal(matcher.group(4));
+            double price = Double.parseDouble(matcher.group(4));
             newItem.setPrice(price);
         }
         newItem.setImported(isTaxItemImported(itemStr));

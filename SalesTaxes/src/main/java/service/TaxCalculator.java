@@ -2,8 +2,6 @@ package service;
 
 import model.TaxItem;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -13,8 +11,8 @@ public class TaxCalculator {
     private final double TAX_RATE_SALES = 0.10d;
     private final double TAX_RATE_IMPORTED = 0.05d;
 
-    private BigDecimal total = new BigDecimal(0);
-    private BigDecimal totalSalesTax = new BigDecimal(0);
+    private double total = 0;
+    private double totalTax = 0;
 
     List<TaxItem> itemsToCalculate;
 
@@ -22,30 +20,35 @@ public class TaxCalculator {
         this.itemsToCalculate = itemsToCalculate;
     }
 
-    public void calculateTax() {
+    public TaxCalculator calculateTax() {
         for (TaxItem item : itemsToCalculate) {
             if (item.hasSalesTax()) {
-                double salesTax = item.getPrice().doubleValue() * TAX_RATE_SALES;
-                item.setSalesTax(BigDecimal.valueOf(salesTax));
+                double salesTax = item.getPrice() * TAX_RATE_SALES;
+                item.setSalesTax(salesTax);
             }
             if (item.isImported()) {
-                double importTax = item.getPrice().doubleValue() * TAX_RATE_IMPORTED;
-                item.setImportTax(BigDecimal.valueOf(importTax));
+                double importTax = item.getPrice() * TAX_RATE_IMPORTED;
+                item.setImportTax(importTax);
             }
-            BigDecimal singleItemTotalTax = item.getSalesTax().add(item.getImportTax());
-            BigDecimal singleItemTotal = item.getPrice().add(singleItemTotalTax);
-            BigDecimal itemAmount = BigDecimal.valueOf(item.getAmount());
+            double singleItemTotalTax = item.getSalesTax() + item.getImportTax();
 
-            total = total.add(singleItemTotal.multiply(itemAmount));
-            totalSalesTax = totalSalesTax.add(singleItemTotalTax.multiply(itemAmount));
+            double itemsTax = roundAmount(singleItemTotalTax * item.getAmount());
+            totalTax = totalTax + itemsTax;
+
+            total = total + item.getPrice() * item.getAmount() + itemsTax;
         }
+        return this;
     }
 
-    public BigDecimal getTotalPlusTaxes() {
-        return total.add(totalSalesTax).setScale(2, RoundingMode.CEILING);
+    private double roundAmount(double amount){
+        return Math.ceil((amount * 20.0)) / 20.0;
     }
 
-    public BigDecimal getTotalSalesTax() {
-        return totalSalesTax.setScale(2, RoundingMode.CEILING);
+    public double getTotal() {
+        return total;
+    }
+
+    public double getSalesTax() {
+        return totalTax;
     }
 }

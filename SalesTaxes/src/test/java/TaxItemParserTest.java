@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ public class TaxItemParserTest {
 
         Assert.assertEquals(" imported bottle of perfume", item.getDescription());
         Assert.assertEquals(1, item.getAmount());
-        Assert.assertEquals(BigDecimal.valueOf(27.99), item.getPrice());
+        Assert.assertEquals(27.99, item.getPrice(), 0);
         Assert.assertTrue(item.isImported());
         Assert.assertTrue(item.hasSalesTax());
     }
@@ -39,7 +38,7 @@ public class TaxItemParserTest {
 
         Assert.assertEquals(" music CD", item.getDescription());
         Assert.assertEquals(9, item.getAmount());
-        Assert.assertEquals(BigDecimal.valueOf(14.99), item.getPrice());
+        Assert.assertEquals(14.99, item.getPrice(), 0);
         Assert.assertFalse(item.isImported());
         Assert.assertTrue(item.hasSalesTax());
     }
@@ -51,7 +50,7 @@ public class TaxItemParserTest {
 
         Assert.assertEquals(" boxes of imported chocolates", item.getDescription());
         Assert.assertEquals(3, item.getAmount());
-        Assert.assertEquals(BigDecimal.valueOf(11.25), item.getPrice());
+        Assert.assertEquals(11.25d, item.getPrice(), 0);
         Assert.assertTrue(item.isImported());
         Assert.assertFalse(item.hasSalesTax());
     }

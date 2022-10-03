@@ -1,11 +1,9 @@
-import convert.TaxItemParser;
 import model.TaxItem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import service.TaxCalculator;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +17,9 @@ public class TaxCalculatorTest {
     @Before
     public void init() {
         List<TaxItem> itemsToCalculate = new ArrayList<>();
-        itemsToCalculate.add(new TaxItem("A", 1, BigDecimal.valueOf(3.5), true, true));
-        itemsToCalculate.add(new TaxItem("B", 2, BigDecimal.valueOf(1), false, true));
-        itemsToCalculate.add(new TaxItem("C", 1, BigDecimal.valueOf(2), false, false));
+        itemsToCalculate.add(new TaxItem("A", 1, 3.5d, true, true));
+        itemsToCalculate.add(new TaxItem("B", 2, 1d, false, true));
+        itemsToCalculate.add(new TaxItem("C", 1, 2d, false, false));
 
         taxCalculator = new TaxCalculator(itemsToCalculate);
     }
@@ -29,7 +27,7 @@ public class TaxCalculatorTest {
     @Test
     public void givenValidItems_whenCalculate_thenOK() {
         taxCalculator.calculateTax();
-        BigDecimal expected = BigDecimal.valueOf(0.63d);
-        Assert.assertEquals(expected, taxCalculator.getTotalSalesTax());
+        double expected = 0.63d;
+        Assert.assertEquals(expected, taxCalculator.getSalesTax(), 0);
     }
 }

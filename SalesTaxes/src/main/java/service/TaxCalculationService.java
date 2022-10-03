@@ -7,7 +7,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
@@ -39,15 +38,15 @@ public class TaxCalculationService {
                 .collect(Collectors.toList());
 
         TaxCalculator calculator = calculate(taxItems);
-
+        printOutputWithData(taxItems, calculator.getSalesTax(), calculator.getTotal());
     }
 
     private TaxCalculator calculate(List<TaxItem> items) {
-        return new TaxCalculator(items);
+        return new TaxCalculator(items).calculateTax();
     }
 
-    private void printOutputWithData(List<TaxItem> items, BigDecimal salesTax, BigDecimal totalTax){
-        PrinterService printer = new PrinterService(items, salesTax, totalTax);
+    private void printOutputWithData(List<TaxItem> items, double salesTax, double total){
+        PrinterService printer = new PrinterService(items, salesTax, total);
         printer.print();
     }
 

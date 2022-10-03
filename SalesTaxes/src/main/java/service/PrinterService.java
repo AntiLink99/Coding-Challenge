@@ -1,8 +1,6 @@
 package service;
 
 import model.TaxItem;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -12,18 +10,22 @@ public class PrinterService {
 
     private final List<TaxItem> items;
 
-    private final BigDecimal salesTax;
+    private final double salesTax;
 
-    private final BigDecimal totalTax;
+    private final double total;
 
-
-    public PrinterService(List<TaxItem> items, BigDecimal salesTax, BigDecimal totalTax) {
+    public PrinterService(List<TaxItem> items, double salesTax, double total) {
         this.items = items;
         this.salesTax = salesTax;
-        this.totalTax = totalTax;
+        this.total = total;
     }
 
     public void print() {
-
+        System.out.println("OUTPUT:");
+        for (TaxItem item : items) {
+            System.out.println(item.toString());
+        }
+        System.out.println("Sales Taxes: " + salesTax);
+        System.out.println("Total: " + total);
     }
 }
