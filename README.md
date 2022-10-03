@@ -21,7 +21,7 @@ Items that are not applicable for Sales Tax need to be put into this file:
 
 Assumptions
 -----------------
-Because this project is small, i did not do things like Dependency Injection or Mocking Objects.
+Because this project is small, i did not do Dependency Injection or mocking objects.
 Simply because it was not necessary. I tried my best to make the code as maintainable as possible without comments.
 Hope you are happy with it!
 
