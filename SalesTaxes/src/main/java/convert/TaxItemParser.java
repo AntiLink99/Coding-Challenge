@@ -29,8 +29,10 @@ public class TaxItemParser {
         if (matcher.find()) {
             String name = matcher.group(2);
             newItem.setDescription(name);
+
             int count = Integer.parseInt(matcher.group(1));
-            newItem.setCount(count);
+            newItem.setAmount(count);
+
             BigDecimal price = new BigDecimal(matcher.group(4));
             newItem.setPrice(price);
         }

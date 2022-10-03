@@ -9,7 +9,7 @@ public class TaxItem {
 
     private String description;
 
-    private int count;
+    private int amount;
 
     private BigDecimal price;
 
@@ -17,13 +17,17 @@ public class TaxItem {
 
     private boolean isImported;
 
+    private BigDecimal salesTax;
+
+    private BigDecimal importTax;
+
     public TaxItem() {
 
     }
 
     public TaxItem(String name, int count, BigDecimal price, boolean hasSalesTax, boolean isImported) {
         this.description = name;
-        this.count = count;
+        this.amount = count;
         this.price = price;
         this.hasSalesTax = hasSalesTax;
         this.isImported = isImported;
@@ -33,8 +37,8 @@ public class TaxItem {
         return description;
     }
 
-    public int getCount() {
-        return count;
+    public int getAmount() {
+        return amount;
     }
 
     public BigDecimal getPrice() {
@@ -53,8 +57,8 @@ public class TaxItem {
         this.description = description;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void setPrice(BigDecimal price) {
@@ -67,5 +71,21 @@ public class TaxItem {
 
     public void setImported(boolean imported) {
         isImported = imported;
+    }
+
+    public BigDecimal getSalesTax() {
+        return salesTax;
+    }
+
+    public void setSalesTax(BigDecimal salesTax) {
+        this.salesTax = salesTax;
+    }
+
+    public BigDecimal getImportTax() {
+        return importTax;
+    }
+
+    public void setImportTax(BigDecimal importTax) {
+        this.importTax = importTax;
     }
 }
