@@ -25,12 +25,15 @@ public class TaxItem {
 
     }
 
-    public TaxItem(String name, int count, BigDecimal price, boolean hasSalesTax, boolean isImported) {
+    public TaxItem(String name, int amount, BigDecimal price, boolean hasSalesTax, boolean isImported) {
         this.description = name;
-        this.amount = count;
+        this.amount = amount;
         this.price = price;
         this.hasSalesTax = hasSalesTax;
         this.isImported = isImported;
+
+        this.salesTax = new BigDecimal(0);
+        this.importTax = new BigDecimal(0);
     }
 
     public String getDescription() {

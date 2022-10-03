@@ -3,6 +3,7 @@ package service;
 import model.TaxItem;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -31,17 +32,20 @@ public class TaxCalculator {
                 double importTax = item.getPrice().doubleValue() * TAX_RATE_IMPORTED;
                 item.setImportTax(BigDecimal.valueOf(importTax));
             }
-            BigDecimal totalTax = item.getSalesTax().add(item.getImportTax());
-            total = total.add(totalTax.multiply(BigDecimal.valueOf(item.getAmount())));
-            totalSalesTax = totalSalesTax.add(totalTax);
+            BigDecimal singleItemTotalTax = item.getSalesTax().add(item.getImportTax());
+            BigDecimal singleItemTotal = item.getPrice().add(singleItemTotalTax);
+            BigDecimal itemAmount = BigDecimal.valueOf(item.getAmount());
+
+            total = total.add(singleItemTotal.multiply(itemAmount));
+            totalSalesTax = totalSalesTax.add(singleItemTotalTax.multiply(itemAmount));
         }
     }
 
     public BigDecimal getTotalPlusTaxes() {
-        return total.add(totalSalesTax);
+        return total.add(totalSalesTax).setScale(2, RoundingMode.CEILING);
     }
 
     public BigDecimal getTotalSalesTax() {
-        return totalSalesTax;
+        return totalSalesTax.setScale(2, RoundingMode.CEILING);
     }
 }
