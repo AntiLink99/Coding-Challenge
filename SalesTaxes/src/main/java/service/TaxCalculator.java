@@ -1,6 +1,7 @@
 package service;
 
 import model.TaxItem;
+import utils.NumberUtils;
 
 import java.util.List;
 
@@ -23,25 +24,20 @@ public class TaxCalculator {
     public TaxCalculator calculateTax() {
         for (TaxItem item : itemsToCalculate) {
             if (item.hasSalesTax()) {
-                double salesTax = item.getPrice() * TAX_RATE_SALES;
+                double salesTax = NumberUtils.roundDouble(item.getPrice() * TAX_RATE_SALES);
                 item.setSalesTax(salesTax);
             }
             if (item.isImported()) {
-                double importTax = item.getPrice() * TAX_RATE_IMPORTED;
+                double importTax = NumberUtils.roundDouble(item.getPrice() * TAX_RATE_IMPORTED);
                 item.setImportTax(importTax);
             }
             double singleItemTotalTax = item.getSalesTax() + item.getImportTax();
+            double itemsTax = singleItemTotalTax * item.getAmount();
 
-            double itemsTax = roundAmount(singleItemTotalTax * item.getAmount());
-            totalTax = totalTax + itemsTax;
-
-            total = total + item.getPrice() * item.getAmount() + itemsTax;
+            totalTax += itemsTax;
+            total += item.getPrice() * item.getAmount() + itemsTax;
         }
         return this;
-    }
-
-    private double roundAmount(double amount){
-        return Math.ceil((amount * 20.0)) / 20.0;
     }
 
     public double getTotal() {

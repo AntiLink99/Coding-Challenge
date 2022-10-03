@@ -27,7 +27,9 @@ public class TaxCalculatorTest {
     @Test
     public void givenValidItems_whenCalculate_thenOK() {
         taxCalculator.calculateTax();
-        double expected = 0.63d;
-        Assert.assertEquals(expected, taxCalculator.getSalesTax(), 0);
+        double expectedTotal = 8.2d;
+        double expectedSalesTax = 0.7d;
+        Assert.assertEquals(expectedTotal, taxCalculator.getTotal(), 0);
+        Assert.assertEquals(expectedSalesTax, taxCalculator.getSalesTax(), 0.0001);
     }
 }

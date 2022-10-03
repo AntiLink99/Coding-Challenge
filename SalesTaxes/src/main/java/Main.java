@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Please enter the file path of the input you want to calculate.");
+            System.out.println("The first argument needs to be the file path to your input file.");
             return;
         }
         String inputFilePath = args[0];

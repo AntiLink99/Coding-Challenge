@@ -1,6 +1,8 @@
 package service;
 
 import model.TaxItem;
+import utils.NumberUtils;
+
 import java.util.List;
 
 /**
@@ -25,7 +27,7 @@ public class PrinterService {
         for (TaxItem item : items) {
             System.out.println(item.toString());
         }
-        System.out.println("Sales Taxes: " + salesTax);
-        System.out.println("Total: " + total);
+        System.out.println("Sales Taxes: " + NumberUtils.formatDouble(salesTax));
+        System.out.println("Total: " + NumberUtils.formatDouble(total));
     }
 }

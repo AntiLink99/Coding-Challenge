@@ -1,5 +1,7 @@
 package model;
 
+import utils.NumberUtils;
+
 /**
  * @author jlued
  */
@@ -32,8 +34,8 @@ public class TaxItem {
     }
 
     public String toString() {
-        String total = price + " " + importTax + " " + salesTax;
-        return amount + description + ": " + total;
+        String totalStr = NumberUtils.formatDouble(price + importTax + salesTax);
+        return amount + description + ": " + totalStr;
     }
 
     public String getDescription() {
