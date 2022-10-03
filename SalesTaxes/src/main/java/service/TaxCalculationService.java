@@ -20,7 +20,7 @@ public class TaxCalculationService {
     TaxItemParser parser;
 
     private final String ITEMS_WITHOUT_SALES_TAX_PATH = "SalesTaxes/data/itemsWithoutSalesTax.txt";
-    private final File itemsWithoutSalesTaxFile = new File(ITEMS_WITHOUT_SALES_TAX_PATH);
+    private final File ITEMS_WITHOUT_SALES_TAX_FILE = new File(ITEMS_WITHOUT_SALES_TAX_PATH);
 
     public void init() {
         List<String> itemsWithoutTax = readItemsWithoutSalesTax();
@@ -52,7 +52,7 @@ public class TaxCalculationService {
 
     private List<String> readItemsWithoutSalesTax() {
         try {
-            return FileUtils.readLines(itemsWithoutSalesTaxFile, StandardCharsets.UTF_8);
+            return FileUtils.readLines(ITEMS_WITHOUT_SALES_TAX_FILE, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
