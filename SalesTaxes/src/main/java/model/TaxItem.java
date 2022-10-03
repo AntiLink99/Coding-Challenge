@@ -2,6 +2,9 @@ package model;
 
 import java.math.BigDecimal;
 
+/**
+ * @author jlued
+ */
 public class TaxItem {
 
     private final String name;
