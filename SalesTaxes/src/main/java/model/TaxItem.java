@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  */
 public class TaxItem {
 
-    private String name;
+    private String description;
 
     private int count;
 
@@ -17,8 +17,20 @@ public class TaxItem {
 
     private boolean isImported;
 
-    public String getName() {
-        return name;
+    public TaxItem() {
+
+    }
+
+    public TaxItem(String name, int count, BigDecimal price, boolean hasSalesTax, boolean isImported) {
+        this.description = name;
+        this.count = count;
+        this.price = price;
+        this.hasSalesTax = hasSalesTax;
+        this.isImported = isImported;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getCount() {
@@ -37,8 +49,8 @@ public class TaxItem {
         return isImported;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setCount(int count) {

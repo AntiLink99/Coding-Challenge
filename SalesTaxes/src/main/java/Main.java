@@ -16,6 +16,7 @@ public class Main {
         }
         String inputFilePath = args[0];
         try {
+            taxCalculationService.init();
             taxCalculationService.calculateTaxForInput(inputFilePath);
         } catch (IOException e) {
             e.printStackTrace();

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,15 @@ import java.util.stream.Collectors;
  */
 public class TaxCalculationService {
 
-    TaxItemParser parser = new TaxItemParser();
+    TaxItemParser parser;
+
+    private final String ITEMS_WITHOUT_SALES_TAX_PATH = "SalesTaxes/data/itemsWithoutSalesTax.txt";
+    private final File itemsWithoutSalesTaxFile = new File(ITEMS_WITHOUT_SALES_TAX_PATH);
+
+    public void init() {
+        List<String> itemsWithoutTax = readItemsWithoutSalesTax();
+        parser = new TaxItemParser(itemsWithoutTax);
+    }
 
     public void calculateTaxForInput(String inputFilePath) throws IOException {
         File inputFile = new File(inputFilePath);
@@ -27,5 +36,15 @@ public class TaxCalculationService {
         List<TaxItem> taxItems = fileLines.stream()
                 .map(line -> parser.convertItemStringToTaxItem(line))
                 .collect(Collectors.toList());
+
+    }
+
+    private List<String> readItemsWithoutSalesTax() {
+        try {
+            return FileUtils.readLines(itemsWithoutSalesTaxFile, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
     }
 }
