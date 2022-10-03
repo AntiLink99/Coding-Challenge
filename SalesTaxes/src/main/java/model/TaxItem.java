@@ -7,23 +7,15 @@ import java.math.BigDecimal;
  */
 public class TaxItem {
 
-    private final String name;
+    private String name;
 
-    private final int count;
+    private int count;
 
-    private final BigDecimal price;
+    private BigDecimal price;
 
-    private final boolean hasSalesTax;
+    private boolean hasSalesTax;
 
-    private final boolean isImported;
-
-    public TaxItem(String name, int count, BigDecimal price, boolean hasSalesTax, boolean isImported) {
-        this.name = name;
-        this.count = count;
-        this.price = price;
-        this.hasSalesTax = hasSalesTax;
-        this.isImported = isImported;
-    }
+    private boolean isImported;
 
     public String getName() {
         return name;
@@ -37,11 +29,31 @@ public class TaxItem {
         return price;
     }
 
-    public boolean isHasSalesTax() {
+    public boolean hasSalesTax() {
         return hasSalesTax;
     }
 
     public boolean isImported() {
         return isImported;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setHasSalesTax(boolean hasSalesTax) {
+        this.hasSalesTax = hasSalesTax;
+    }
+
+    public void setImported(boolean imported) {
+        isImported = imported;
     }
 }
