@@ -19,6 +19,12 @@ The output is printed into the console.
 Items that are not applicable for Sales Tax need to be put into this file:
 `SalesTaxes/data/itemsWithoutSalesTax.txt`
 
+Assumptions
+-----------------
+Because this project is small, i did not do Dependency Injection or mocking objects.
+Simply because it was not necessary. I tried my best to make the code as maintainable as possible without comments.
+Hope you are happy with it!
+
 Problem
 -----------------
 
