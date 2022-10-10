@@ -10,10 +10,12 @@ How do you run this? 🤔
    --> Jetzt sollten einige Textdateien und die "SalesTaxes-1.0-SNAPSHOT.jar" generiert worden sein
 
 4. Setzt die Umgebungsvariable "NO_SALES_TAX_FILE_PATH" mit dem absoluten Pfad zur in target generierten Datei "itemsWithoutSalesTax.txt"
+
 Beispiel unter Windows-Cmd: `SET NO_SALES_TAX_FILE_PATH=C:\Users\jlued\git\Coding-Challenge\SalesTaxes\target\itemsWithoutSalesTax.txt`
 
 5. Führt die .jar mit folgendem Befehl aus:
 `java -cp SalesTaxes-1.0-SNAPSHOT.jar Main <ABSOLUTER PFAD ZUR GEWÜNSCHTEN INPUT-DATEI>`
+
 Beispiel: `java -cp SalesTaxes-1.0-SNAPSHOT.jar Main C:\Users\jlued\git\Coding-Challenge\SalesTaxes\target\input1.txt`
 
 6. Ihr solltet jetzt (hoffentlich) den Output des Programms in der Konsole sehen
