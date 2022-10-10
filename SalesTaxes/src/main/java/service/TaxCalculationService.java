@@ -19,10 +19,17 @@ public class TaxCalculationService {
 
     TaxItemParser parser;
 
-    private final String ITEMS_WITHOUT_SALES_TAX_PATH = "SalesTaxes/data/itemsWithoutSalesTax.txt";
-    private final File ITEMS_WITHOUT_SALES_TAX_FILE = new File(ITEMS_WITHOUT_SALES_TAX_PATH);
+    private File itemsWithoutSalesTaxFile;
 
-    public void init() {
+    public void init() throws FileNotFoundException {
+        String salesWithoutTaxesFilePath = System.getenv("NO_SALES_TAX_FILE_PATH");
+        if (salesWithoutTaxesFilePath == null) {
+            throw new AssertionError("Environment variable 'NO_SALES_TAX_FILE_PATH' is missing!");
+        }
+        itemsWithoutSalesTaxFile = new File(salesWithoutTaxesFilePath);
+        if (!itemsWithoutSalesTaxFile.exists()) {
+            throw new FileNotFoundException("Exclusion file does not exist!");
+        }
         List<String> itemsWithoutTax = readItemsWithoutSalesTax();
         parser = new TaxItemParser(itemsWithoutTax);
     }
@@ -52,7 +59,7 @@ public class TaxCalculationService {
 
     private List<String> readItemsWithoutSalesTax() {
         try {
-            return FileUtils.readLines(ITEMS_WITHOUT_SALES_TAX_FILE, StandardCharsets.UTF_8);
+            return FileUtils.readLines(itemsWithoutSalesTaxFile, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }

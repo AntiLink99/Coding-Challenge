@@ -4,20 +4,19 @@ Java + Maven
 
 How do you run this? 🤔
 -----------------
-Build the project with `mvn clean package`.
+1. Stellt sicher, dass ihr euch im Directory "SalesTaxes" befindet
+2. Baut das Projekt: `mvn clean package`
+3. Wechselt jetzt in den Ordner "target"
+   --> Jetzt sollten einige Textdateien und die "SalesTaxes-1.0-SNAPSHOT.jar" generiert worden sein
 
-To run this program, execute the Main Method, located under
-`SalesTaxes/src/main/java/Main.java`.
+4. Setzt die Umgebungsvariable "NO_SALES_TAX_FILE_PATH" mit dem absoluten Pfad zur in target generierten Datei "itemsWithoutSalesTax.txt"
+Beispiel unter Windows-Cmd: `SET NO_SALES_TAX_FILE_PATH=C:\Users\jlued\git\Coding-Challenge\SalesTaxes\target\itemsWithoutSalesTax.txt`
 
-The program reads the input data from static files.
-The first argument needs to be the file path to your input file. (See other files in the "data" directory for reference)
+5. Führt die .jar mit folgendem Befehl aus:
+`java -cp SalesTaxes-1.0-SNAPSHOT.jar Main <ABSOLUTER PFAD ZUR GEWÜNSCHTEN INPUT-DATEI>`
+Beispiel: `java -cp SalesTaxes-1.0-SNAPSHOT.jar Main C:\Users\jlued\git\Coding-Challenge\SalesTaxes\target\input1.txt`
 
-Example: `D:\Programme\IdeaProjects\Coding-Challenge\SalesTaxes\data\input1.txt`
-
-The output is printed into the console.
-
-Items that are not applicable for Sales Tax need to be put into this file:
-`SalesTaxes/data/itemsWithoutSalesTax.txt`
+6. Ihr solltet jetzt (hoffentlich) den Output des Programms in der Konsole sehen
 
 Assumptions
 -----------------
